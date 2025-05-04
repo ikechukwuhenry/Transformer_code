@@ -67,7 +67,7 @@ cbow_model = CBOW(vocab_size, embedding_dim)
 
 # Using random context words and target  ( as an example )
 context_words = [one_hot_encode(word, word_to_index) for word in ['the', 'quick', 'fox', 'jumps']]
-context_words = np.array(context)
+context_words = np.array(context_words)
 context_words = np.mean(context_words, axis=0)  # average context words
 target_word = one_hot_encode('brown', word_to_index)
 
