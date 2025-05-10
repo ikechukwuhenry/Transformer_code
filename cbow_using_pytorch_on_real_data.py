@@ -2,6 +2,14 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
+# Define the corpus
+corpus = [
+    'The cat sat on the mat',
+    'The dog ran in the park',
+    'The bird sang in the tree'
+]
+# words = " ".join([sentence for sentence in corpus]).lower().split()
+
 # Sample data
 sentence = "the quick brown fox jumps over the lazy dog"
 words = sentence.split()
@@ -58,6 +66,7 @@ for epoch in range(epochs):
 # Prediction example
 context = ['quick', 'brown', 'over', 'the']
 # context2 = ["fox", "jumps", "the", "lazy"]
+# context = ['the', 'dog','in','the']
 context_indices = [word_to_index[w] for w in context]
 context_tensor = torch.tensor(context_indices)
 prediction = model(context_tensor)
