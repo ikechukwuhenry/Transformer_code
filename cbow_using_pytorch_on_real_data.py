@@ -65,3 +65,28 @@ predicted_index = torch.argmax(prediction).item()
 predicted_word = index_to_word[predicted_index]
 
 print(f'Context: {context}, Predicted word: {predicted_word}')
+
+
+
+# just to view the word vector embeddings
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+
+# print(model.embeddings.weight)
+
+pca = PCA(n_components=2)
+embeddings_weight = model.embeddings.weight
+reduced_embeddings = pca.fit_transform(embeddings_weight.detach().numpy())
+print(reduced_embeddings)
+
+# Visualize the embeddings
+plt.figure(figsize=(5, 5))
+for word, idx in word_to_index.items():
+    x, y = reduced_embeddings[idx]
+    plt.scatter(x, y)
+    plt.annotate(word, xy=(x, y), xytext=(5, 2),
+                 textcoords='offset points', ha='right', va='bottom')
+plt.title("Word Embeddings Visualized")
+plt.show()
+
